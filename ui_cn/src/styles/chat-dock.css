@@ -1,0 +1,46 @@
+.chat-dock {
+  position: static;
+  margin-top: var(--space-md);
+  padding: var(--space-xl) 0 var(--space-2xl);
+}
+
+.chat-dock__card {
+  background: var(--card);
+  border: 1px solid var(--border-strong, var(--border));
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Constrain chat height but keep full feature set */
+.chat-dock .chat {
+  max-height: min(72vh, 760px);
+  min-height: 460px;
+}
+
+.chat-dock .chat-thread {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: var(--space-md);
+  margin: 0;
+}
+
+.chat-dock .chat-compose {
+  background: linear-gradient(to bottom, transparent, var(--card) 30%);
+  padding-top: var(--space-md);
+}
+
+@media (max-width: 960px) {
+  .chat-dock {
+    padding: var(--space-lg) 0 var(--space-2xl);
+  }
+
+  .chat-dock__card {
+    padding: var(--space-md);
+    border-radius: var(--radius-xl);
+  }
+
+  .chat-dock .chat {
+    min-height: 380px;
+  }
+}

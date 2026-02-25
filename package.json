@@ -135,7 +135,11 @@
     "tui:dev": "OPENCLAW_PROFILE=dev CLAWDBOT_PROFILE=dev node scripts/run-node.mjs --dev tui",
     "ui:build": "node scripts/ui.js build",
     "ui:dev": "node scripts/ui.js dev",
-    "ui:install": "node scripts/ui.js install"
+    "ui:install": "node scripts/ui.js install",
+    "ui_cn:build": "node scripts/ui_cn.js build",
+    "ui_cn:dev": "node scripts/ui_cn.js dev",
+    "ui_cn:install": "node scripts/ui_cn.js install",
+    "ui_cn:test": "node scripts/ui_cn.js test"
   },
   "dependencies": {
     "@agentclientprotocol/sdk": "0.14.1",
