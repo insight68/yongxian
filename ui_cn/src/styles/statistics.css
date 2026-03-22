@@ -1,0 +1,341 @@
+/**
+ * Statistics Page Styles
+ *
+ * 统计页面样式 - 数据可视化风格
+ */
+
+/* ========== 容器 ========== */
+.statistics-container {
+  padding: var(--space-3xl) var(--space-2xl);
+  max-width: 1400px;
+  margin: 0 auto;
+  animation: fade-slide-up 0.6s var(--ease-out);
+}
+
+.statistics-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  color: var(--muted);
+  font-family: var(--font-body);
+}
+
+/* ========== 页面标题 ========== */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-3xl);
+  gap: var(--space-lg);
+}
+
+.page-title-section {
+  flex: 1;
+}
+
+.page-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--text-strong);
+  margin: 0 0 var(--space-sm) 0;
+  letter-spacing: -0.02em;
+}
+
+.page-subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.time-range-selector {
+  display: flex;
+  gap: var(--space-sm);
+  background: var(--card);
+  padding: var(--space-xs);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.range-button {
+  padding: var(--space-sm) var(--space-md);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.range-button:hover {
+  color: var(--text);
+  background: var(--bg-hover);
+}
+
+.range-button.active {
+  color: var(--accent);
+  background: var(--accent-subtle);
+}
+
+/* ========== 统计卡片网格 ========== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+  margin-bottom: var(--space-3xl);
+}
+
+@media (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-header {
+    flex-direction: column;
+  }
+
+  .time-range-selector {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+.stat-card {
+  background: var(--card);
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  transition: all var(--duration-normal) var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+
+.stat-card--primary::before {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+}
+
+.stat-card--success::before {
+  background: var(--ok);
+}
+
+.stat-card--info::before {
+  background: var(--info);
+}
+
+.stat-card--warning::before {
+  background: var(--warn);
+}
+
+.stat-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.stat-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.stat-icon {
+  font-size: 1.5rem;
+  opacity: 0.8;
+}
+
+.stat-label {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stat-value {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-strong);
+  margin-bottom: var(--space-sm);
+  line-height: 1;
+}
+
+.stat-change {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.stat-change.positive {
+  color: var(--ok);
+}
+
+.stat-change.negative {
+  color: var(--danger);
+}
+
+.stat-change.neutral {
+  color: var(--muted);
+}
+
+/* ========== 工具使用区域 ========== */
+.tools-section {
+  background: var(--card);
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+}
+
+.section-header {
+  margin-bottom: var(--space-xl);
+}
+
+.section-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-strong);
+  margin: 0 0 var(--space-xs) 0;
+}
+
+.section-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.tools-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.tool-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--space-md);
+  align-items: center;
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.tool-item:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-hover);
+}
+
+.tool-rank {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--muted);
+  width: 32px;
+  text-align: center;
+}
+
+.tool-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.tool-name {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-strong);
+}
+
+.tool-category {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  text-transform: capitalize;
+}
+
+.tool-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-sm);
+  min-width: 120px;
+}
+
+.tool-count {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.tool-bar {
+  width: 100%;
+  height: 6px;
+  background: var(--bg-hover);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.tool-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width var(--duration-slow) var(--ease-out);
+}
+
+/* ========== 响应式调整 ========== */
+@media (max-width: 640px) {
+  .tool-item {
+    grid-template-columns: auto 1fr;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+  }
+
+  .tool-stats {
+    grid-column: 2;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .tool-bar {
+    width: 80px;
+  }
+}
+
+/* ========== 深色主题微调 ========== */
+:root[data-theme="dark"] .stat-card,
+:root[data-theme="dark"] .tools-section {
+  background: var(--bg-elevated);
+}
+
+:root[data-theme="dark"] .tool-item {
+  background: var(--bg-accent);
+}

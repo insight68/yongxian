@@ -21,7 +21,7 @@ ui/playwright-report/
 ui/test-results/
 packages/dashboard-next/.next/
 packages/dashboard-next/out/
-
+ui-main/
 # Mise configuration files
 mise.toml
 

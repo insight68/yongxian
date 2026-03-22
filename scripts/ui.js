@@ -7,7 +7,9 @@ import { fileURLToPath } from "node:url";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(here, "..");
-const uiDir = path.join(repoRoot, "ui");
+
+// 当前目标 UI 目录，由 main 函数设置
+let uiDir = path.join(repoRoot, "ui");
 
 const WINDOWS_SHELL_EXTENSIONS = new Set([".cmd", ".bat", ".com"]);
 const WINDOWS_UNSAFE_SHELL_ARG_PATTERN = /[\r\n"&|<>^%!]/;
@@ -160,7 +162,25 @@ function resolveScriptAction(action) {
 }
 
 export function main(argv = process.argv.slice(2)) {
-  const [action, ...rest] = argv;
+  // 支持两种格式:
+  // 1. node scripts/ui.js <action> [dirName] [extra args...]
+  // 2. node scripts/ui.js <action> [extra args...]
+  // 如果第二个参数是目录名（ui 或 ui_cn），则使用它；否则使用默认的 "ui"
+  let action, dirName, extraArgs;
+
+  if (argv[1] === "ui" || argv[1] === "ui_cn") {
+    action = argv[0];
+    dirName = argv[1];
+    extraArgs = argv.slice(2);
+  } else {
+    action = argv[0];
+    dirName = "ui";
+    extraArgs = argv.slice(1);
+  }
+
+  // 设置 uiDir，供其他函数使用
+  uiDir = path.join(repoRoot, dirName);
+
   if (!action) {
     usage();
     process.exit(2);
@@ -179,7 +199,7 @@ export function main(argv = process.argv.slice(2)) {
   }
 
   if (action === "install") {
-    run(runner.cmd, ["install", ...rest]);
+    run(runner.cmd, ["install", ...extraArgs]);
     return;
   }
 
@@ -190,7 +210,7 @@ export function main(argv = process.argv.slice(2)) {
     runSync(runner.cmd, installArgs, installEnv);
   }
 
-  run(runner.cmd, ["run", script, ...rest]);
+  run(runner.cmd, ["run", script, ...extraArgs]);
 }
 
 const isDirectExecution = (() => {

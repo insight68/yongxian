@@ -1,0 +1,1006 @@
+/**
+ * Marketing Page Styles
+ *
+ * 活力专业的营销页面样式设计
+ */
+
+/* ========== 助手布局与结构 ========== */
+openclaw-view-marketing,
+openclaw-view-product-management,
+openclaw-view-legal,
+openclaw-view-finance,
+openclaw-view-data-processing,
+openclaw-view-market-analysis,
+openclaw-view-customer-service,
+openclaw-view-brand-management,
+openclaw-view-sentiment-monitor {
+  display: block;
+  height: 100%;
+}
+
+.assistant-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.function-panel {
+  flex: 0 0 auto;
+  padding: var(--space-xl) var(--space-2xl);
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  overflow: visible;
+}
+
+.marketing-assistant {
+  background: linear-gradient(180deg, #f9fafb 0%, rgba(249, 250, 251, 0) 45%);
+  gap: var(--space-2xl);
+}
+
+.marketing-function-panel {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.panel-controls--text {
+  color: var(--muted);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+}
+
+.panel-header-text {
+  flex: 1;
+}
+
+.panel-title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-strong);
+  margin: 0 0 var(--space-sm) 0;
+}
+
+.panel-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.panel-controls {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.panel-control-button {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 150ms var(--ease-out);
+  color: var(--muted);
+}
+
+.panel-control-button:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+  border-color: var(--border-hover);
+}
+
+.section-title {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: var(--space-lg) 0 var(--space-md) 0;
+}
+
+.section-title:first-of-type {
+  margin-top: 0;
+}
+
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--space-lg);
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3xl);
+  text-align: center;
+  color: var(--muted);
+}
+
+.empty-state-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-md);
+  opacity: 0.5;
+}
+
+.empty-state-text {
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .function-panel {
+    max-height: 50vh;
+    padding: var(--space-md);
+  }
+
+  .quick-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .panel-title {
+    font-size: 1.5rem;
+  }
+}
+
+/* ========== Apple-Style Skill Card Design ========== */
+
+/**
+ * Apple 风格技能卡片设计
+ *
+ * 设计特征：
+ * - 纯净的白色背景，极简美学
+ * - 精细的圆角 (20px)，接近 iOS 图标风格
+ * - 轻盈的阴影层次，营造悬浮感
+ * - SF Pro 风格的字体排版
+ * - 优雅克制的交互动效
+ */
+
+/* 基础卡片容器 */
+.skill-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 20px;
+  border: none;
+  padding: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+
+  /* Apple 风格的多层阴影 */
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.03),
+    0 2px 4px rgba(0, 0, 0, 0.02),
+    0 12px 24px rgba(0, 0, 0, 0.03);
+
+  /* 精细的过渡动效 */
+  transition:
+    transform 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 悬停状态 - 轻微抬升 */
+.skill-card:hover {
+  transform: translateY(-2px) scale(1.005);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.04),
+    0 4px 8px rgba(0, 0, 0, 0.03),
+    0 24px 48px rgba(0, 0, 0, 0.06);
+}
+
+/* 按下状态 - 轻微下沉 */
+.skill-card:active {
+  transform: translateY(0) scale(0.99);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.05),
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 8px 16px rgba(0, 0, 0, 0.04);
+}
+
+/* 图标容器 - Apple 风格圆角正方形 */
+.skill-card .skill-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.375rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(0, 122, 255, 0.08) 0%, rgba(0, 122, 255, 0.04) 100%);
+  color: #007aff;
+  transition: transform 0.24s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-card:hover .skill-icon {
+  transform: scale(1.05);
+}
+
+/* 内容区域 */
+.skill-card .skill-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* 标题 - SF Pro Display 风格 */
+.skill-card .skill-title {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #1d1d1f;
+  line-height: 1.33;
+}
+
+/* 描述文字 - SF Pro Text 风格 */
+.skill-card .skill-description {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: -0.008em;
+  color: #86868b;
+  line-height: 1.46;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ========== Primary 变体 - 重点推荐卡片 ========== */
+.skill-card--primary {
+  background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
+  padding: 24px;
+  border-radius: 24px;
+  box-shadow:
+    0 0 0 1px rgba(0, 122, 255, 0.08),
+    0 4px 12px rgba(0, 122, 255, 0.04),
+    0 20px 40px rgba(0, 0, 0, 0.04);
+}
+
+.skill-card--primary:hover {
+  box-shadow:
+    0 0 0 1px rgba(0, 122, 255, 0.12),
+    0 8px 20px rgba(0, 122, 255, 0.08),
+    0 32px 64px rgba(0, 0, 0, 0.06);
+}
+
+.skill-card--primary .skill-icon {
+  width: 52px;
+  height: 52px;
+  font-size: 1.625rem;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #007aff 0%, #0055d4 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+}
+
+.skill-card--primary .skill-title {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* ========== Secondary 变体 - 标准卡片 ========== */
+.skill-card--secondary {
+  background: #ffffff;
+}
+
+.skill-card--secondary .skill-icon {
+  background: rgba(0, 122, 255, 0.06);
+  color: #007aff;
+}
+
+/* ========== Accent 变体 - 强调色卡片 ========== */
+.skill-card--accent {
+  background: #ffffff;
+}
+
+.skill-card--accent .skill-icon {
+  background: linear-gradient(135deg, rgba(255, 149, 0, 0.1) 0%, rgba(255, 149, 0, 0.05) 100%);
+  color: #ff9500;
+}
+
+.skill-card--accent:hover {
+  box-shadow:
+    0 0 0 1px rgba(255, 149, 0, 0.08),
+    0 4px 8px rgba(255, 149, 0, 0.04),
+    0 24px 48px rgba(0, 0, 0, 0.06);
+}
+
+/* ========== Subtle 变体 - 低调卡片（虚拟占位符） ========== */
+.skill-card--subtle {
+  background: #fafbfc;
+  opacity: 0.8;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.04),
+    0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.skill-card--subtle:hover {
+  opacity: 1;
+  background: #ffffff;
+}
+
+.skill-card--subtle .skill-icon {
+  background: rgba(142, 142, 147, 0.1);
+  color: #8e8e93;
+}
+
+.skill-card--subtle .skill-title {
+  color: #3a3a3c;
+}
+
+/* ========== 尺寸变体 ========== */
+
+/* Large - 快捷操作区域 */
+.skill-card--large {
+  flex-direction: column;
+  align-items: stretch;
+  min-height: 140px;
+  padding: 28px;
+  border-radius: 24px;
+}
+
+.skill-card--large .skill-icon {
+  width: 56px;
+  height: 56px;
+  font-size: 1.75rem;
+  border-radius: 16px;
+  margin-bottom: 8px;
+}
+
+.skill-card--large .skill-title {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-top: 4px;
+}
+
+.skill-card--large .skill-description {
+  font-size: 14px;
+  -webkit-line-clamp: 3;
+}
+
+/* Medium - 标准网格卡片 */
+.skill-card--medium {
+  min-height: 88px;
+  padding: 18px 20px;
+  align-items: center;
+  animation: apple-card-fade-in 0.5s ease-out forwards;
+}
+
+.skill-card--medium::before {
+  display: none;
+}
+
+/* Small - 紧凑列表 */
+.skill-card--small {
+  min-height: 64px;
+  padding: 14px 16px;
+  border-radius: 16px;
+}
+
+.skill-card--small .skill-icon {
+  width: 36px;
+  height: 36px;
+  font-size: 1.125rem;
+  border-radius: 10px;
+}
+
+.skill-card--small .skill-title {
+  font-size: 14px;
+}
+
+.skill-card--small .skill-description {
+  font-size: 12px;
+  -webkit-line-clamp: 1;
+}
+
+/* ========== 选中状态 ========== */
+.skill-card--selected {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 122, 255, 0.02) 0%,
+    rgba(0, 122, 255, 0.05) 100%
+  ) !important;
+  box-shadow:
+    0 0 0 2px #007aff,
+    0 4px 12px rgba(0, 122, 255, 0.12),
+    0 24px 48px rgba(0, 0, 0, 0.04) !important;
+}
+
+.skill-card--selected .skill-icon {
+  background: linear-gradient(135deg, #007aff 0%, #0055d4 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+}
+
+.skill-card--selected .skill-title {
+  color: #007aff !important;
+}
+
+.skill-card--selected::after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 20px;
+  height: 20px;
+  background: #007aff
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E")
+    center/14px no-repeat;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 122, 255, 0.4);
+}
+
+/* ========== Focus 状态（键盘导航） ========== */
+.skill-card:focus {
+  outline: none;
+  box-shadow:
+    0 0 0 4px rgba(0, 122, 255, 0.2),
+    0 0 0 1px rgba(0, 0, 0, 0.03),
+    0 12px 24px rgba(0, 0, 0, 0.03);
+}
+
+.skill-card:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 4px rgba(0, 122, 255, 0.3),
+    0 0 0 1px rgba(0, 122, 255, 0.5),
+    0 12px 24px rgba(0, 0, 0, 0.04);
+}
+
+/* ========== 入场动画 ========== */
+@keyframes apple-card-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 交错延迟 */
+.skill-card--medium:nth-child(1) {
+  animation-delay: 0ms;
+}
+.skill-card--medium:nth-child(2) {
+  animation-delay: 50ms;
+}
+.skill-card--medium:nth-child(3) {
+  animation-delay: 100ms;
+}
+.skill-card--medium:nth-child(4) {
+  animation-delay: 150ms;
+}
+.skill-card--medium:nth-child(5) {
+  animation-delay: 200ms;
+}
+.skill-card--medium:nth-child(6) {
+  animation-delay: 250ms;
+}
+.skill-card--medium:nth-child(7) {
+  animation-delay: 300ms;
+}
+.skill-card--medium:nth-child(8) {
+  animation-delay: 350ms;
+}
+
+/* ========== 深色模式 - Apple Dark Appearance ========== */
+:root[data-theme="dark"] .skill-card {
+  background: rgba(28, 28, 30, 0.98);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+:root[data-theme="dark"] .skill-card:hover {
+  background: rgba(44, 44, 46, 0.98);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 4px 8px rgba(0, 0, 0, 0.25),
+    0 24px 48px rgba(0, 0, 0, 0.3);
+}
+
+:root[data-theme="dark"] .skill-card .skill-icon {
+  background: rgba(10, 132, 255, 0.16);
+  color: #0a84ff;
+}
+
+:root[data-theme="dark"] .skill-card .skill-title {
+  color: #f5f5f7;
+}
+
+:root[data-theme="dark"] .skill-card .skill-description {
+  color: #98989d;
+}
+
+:root[data-theme="dark"] .skill-card--primary {
+  background: linear-gradient(180deg, rgba(44, 44, 46, 0.98) 0%, rgba(28, 28, 30, 0.98) 100%);
+  box-shadow:
+    0 0 0 1px rgba(10, 132, 255, 0.2),
+    0 4px 12px rgba(10, 132, 255, 0.08),
+    0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+:root[data-theme="dark"] .skill-card--primary .skill-icon {
+  background: linear-gradient(135deg, #0a84ff 0%, #0055d4 100%);
+  color: #ffffff;
+}
+
+:root[data-theme="dark"] .skill-card--accent .skill-icon {
+  background: rgba(255, 159, 10, 0.16);
+  color: #ff9f0a;
+}
+
+:root[data-theme="dark"] .skill-card--subtle {
+  background: rgba(44, 44, 46, 0.6);
+}
+
+:root[data-theme="dark"] .skill-card--subtle:hover {
+  background: rgba(58, 58, 60, 0.9);
+}
+
+:root[data-theme="dark"] .skill-card--subtle .skill-icon {
+  background: rgba(142, 142, 147, 0.15);
+  color: #98989d;
+}
+
+:root[data-theme="dark"] .skill-card--selected {
+  background: rgba(10, 132, 255, 0.08) !important;
+  box-shadow:
+    0 0 0 2px #0a84ff,
+    0 4px 12px rgba(10, 132, 255, 0.15),
+    0 24px 48px rgba(0, 0, 0, 0.3) !important;
+}
+
+:root[data-theme="dark"] .skill-card--selected .skill-icon {
+  background: linear-gradient(135deg, #0a84ff 0%, #0055d4 100%) !important;
+  box-shadow: 0 4px 12px rgba(10, 132, 255, 0.4);
+}
+
+:root[data-theme="dark"] .skill-card--selected .skill-title {
+  color: #0a84ff !important;
+}
+
+:root[data-theme="dark"] .skill-card--selected::after {
+  background-color: #0a84ff;
+}
+
+/* ========== 状态指示器 ========== */
+
+.skill-status {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.skill-status--enabled {
+  color: #34c759;
+  background: rgba(52, 199, 89, 0.1);
+}
+
+.skill-status--disabled {
+  color: #8e8e93;
+  background: rgba(142, 142, 147, 0.1);
+}
+
+/* ========== 加载状态 ========== */
+
+.skill-card--loading {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.skill-card--loading::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ========== 营销页聊天面板 ========== */
+.marketing-chat-section {
+  padding: 0 var(--space-2xl) var(--space-3xl);
+}
+
+.marketing-chat-panel {
+  background: #ffffff;
+  border-radius: 32px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  padding: var(--space-2xl);
+  box-shadow:
+    0 32px 60px rgba(15, 23, 42, 0.08),
+    0 8px 20px rgba(15, 23, 42, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+:root[data-theme="dark"] .marketing-chat-panel {
+  background: rgba(18, 20, 29, 0.96);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.marketing-chat-panel__info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.marketing-chat-panel__copy {
+  flex: 1;
+  min-width: 240px;
+}
+
+.marketing-chat-panel__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(15, 23, 42, 0.7);
+  background: rgba(59, 130, 246, 0.12);
+  width: fit-content;
+}
+
+.marketing-chat-panel__title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.marketing-chat-panel__desc {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.7);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.marketing-chat-panel__selected {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  background: rgba(15, 23, 42, 0.03);
+  padding: var(--space-lg);
+  border-radius: var(--radius-2xl);
+}
+
+.marketing-chat-panel__label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgba(15, 23, 42, 0.6);
+}
+
+.marketing-chat-panel__value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.marketing-chat-panel__hint {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.6);
+  line-height: 1.6;
+}
+
+.marketing-chat-panel__chat {
+  margin-top: var(--space-sm);
+}
+
+.marketing-chat-panel__action {
+  border: none;
+  background: #0f172a;
+  color: white;
+  border-radius: var(--radius-full);
+  padding: 0 var(--space-xl);
+  height: 48px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 150ms var(--ease-out),
+    box-shadow 150ms var(--ease-out);
+}
+
+.marketing-chat-panel__action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.2);
+}
+
+.marketing-chat-panel--placeholder {
+  gap: var(--space-md);
+}
+
+:root[data-theme="dark"] .marketing-chat-panel__badge {
+  color: rgba(248, 250, 252, 0.8);
+  background: rgba(59, 130, 246, 0.18);
+}
+
+:root[data-theme="dark"] .marketing-chat-panel__title,
+:root[data-theme="dark"] .marketing-chat-panel__value {
+  color: #f8fafc;
+}
+
+:root[data-theme="dark"] .marketing-chat-panel__desc,
+:root[data-theme="dark"] .marketing-chat-panel__hint,
+:root[data-theme="dark"] .marketing-chat-panel__label {
+  color: rgba(248, 250, 252, 0.7);
+}
+
+:root[data-theme="dark"] .marketing-chat-panel__selected {
+  background: rgba(59, 130, 246, 0.12);
+}
+
+:root[data-theme="dark"] .marketing-chat-panel__action {
+  background: rgba(59, 130, 246, 0.92);
+}
+
+/* ========== 营销页聊天停靠栏 ========== */
+.marketing-chat-dock {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--bg);
+}
+
+.marketing-chat-dock__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  padding: var(--space-md) var(--space-2xl);
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+}
+
+.marketing-chat-dock__skill-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-xs) var(--space-md);
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--accent);
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.marketing-chat-dock__hint {
+  flex: 1;
+  font-size: 0.8125rem;
+  color: var(--muted);
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.marketing-chat-dock__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+:root[data-theme="dark"] .marketing-chat-dock__skill-tag {
+  background: rgba(59, 130, 246, 0.2);
+}
+
+/* ========== 响应式调整 - Apple Style ========== */
+
+@media (max-width: 768px) {
+  /* 卡片响应式 */
+  .skill-card {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .skill-card .skill-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.25rem;
+    border-radius: 10px;
+  }
+
+  .skill-card .skill-title {
+    font-size: 14px;
+  }
+
+  .skill-card .skill-description {
+    font-size: 12px;
+    -webkit-line-clamp: 2;
+  }
+
+  .skill-card--large {
+    min-height: 120px;
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .skill-card--large .skill-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+    border-radius: 12px;
+  }
+
+  .skill-card--large .skill-title {
+    font-size: 16px;
+  }
+
+  .skill-card--large .skill-description {
+    font-size: 13px;
+  }
+
+  .skill-card--medium {
+    min-height: 76px;
+    padding: 14px 16px;
+  }
+
+  .skill-card--selected::after {
+    width: 18px;
+    height: 18px;
+    top: 10px;
+    right: 10px;
+  }
+
+  /* 聊天面板响应式 */
+  .marketing-chat-section {
+    padding: 0 var(--space-lg) var(--space-3xl);
+  }
+
+  .marketing-chat-panel {
+    padding: var(--space-xl);
+    border-radius: 24px;
+  }
+
+  .marketing-chat-panel__info {
+    flex-direction: column;
+  }
+
+  .marketing-chat-panel__action {
+    width: 100%;
+  }
+
+  .marketing-chat-dock__header {
+    padding: var(--space-sm) var(--space-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .skill-card {
+    padding: 14px;
+    gap: 12px;
+  }
+
+  .skill-card .skill-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1.125rem;
+    border-radius: 9px;
+  }
+
+  .skill-card .skill-title {
+    font-size: 13px;
+  }
+
+  .skill-card .skill-description {
+    font-size: 11px;
+    -webkit-line-clamp: 1;
+  }
+
+  .skill-card--large {
+    min-height: 100px;
+    padding: 16px;
+  }
+
+  .skill-card--large .skill-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.25rem;
+    border-radius: 10px;
+    margin-bottom: 4px;
+  }
+
+  .skill-card--large .skill-title {
+    font-size: 15px;
+  }
+}
+
+/* ========== 减少动画偏好 - Apple Accessibility ========== */
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-card,
+  .skill-card--primary,
+  .skill-card--secondary,
+  .skill-card--accent,
+  .skill-card--subtle,
+  .skill-card--medium {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .skill-card:hover,
+  .skill-card--primary:hover,
+  .skill-card--secondary:hover,
+  .skill-card--accent:hover,
+  .skill-card--subtle:hover,
+  .skill-card--medium:hover {
+    transform: none !important;
+  }
+
+  .skill-card .skill-icon,
+  .skill-card--medium .skill-icon {
+    transition: none !important;
+  }
+
+  .skill-card:hover .skill-icon,
+  .skill-card--medium:hover .skill-icon {
+    transform: none !important;
+  }
+
+  .skill-card--loading::after {
+    animation: none !important;
+  }
+}
