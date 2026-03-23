@@ -2,15 +2,17 @@ import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { Command } from "commander";
-import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 
-const getMemorySearchManager = vi.fn();
-const loadConfig = vi.fn(() => ({}));
-const resolveDefaultAgentId = vi.fn(() => "main");
-const resolveCommandSecretRefsViaGateway = vi.fn(async ({ config }: { config: unknown }) => ({
-  resolvedConfig: config,
-  diagnostics: [] as string[],
-}));
+const getMemorySearchManager = vi.hoisted(() => vi.fn());
+const loadConfig = vi.hoisted(() => vi.fn(() => ({})));
+const resolveDefaultAgentId = vi.hoisted(() => vi.fn(() => "main"));
+const resolveCommandSecretRefsViaGateway = vi.hoisted(() =>
+  vi.fn(async ({ config }: { config: unknown }) => ({
+    resolvedConfig: config,
+    diagnostics: [] as string[],
+  })),
+);
 
 vi.mock("../memory/index.js", () => ({
   getMemorySearchManager,
@@ -39,25 +41,41 @@ beforeAll(async () => {
   ({ isVerbose, setVerbose } = await import("../globals.js"));
 });
 
+beforeEach(() => {
+  getMemorySearchManager.mockReset();
+  loadConfig.mockReset().mockReturnValue({});
+  resolveDefaultAgentId.mockReset().mockReturnValue("main");
+  resolveCommandSecretRefsViaGateway.mockReset().mockImplementation(async ({ config }) => ({
+    resolvedConfig: config,
+    diagnostics: [] as string[],
+  }));
+});
+
 afterEach(() => {
   vi.restoreAllMocks();
-  getMemorySearchManager.mockClear();
-  resolveCommandSecretRefsViaGateway.mockClear();
   process.exitCode = undefined;
   setVerbose(false);
 });
 
 describe("memory cli", () => {
   function spyRuntimeLogs() {
-    return vi.spyOn(defaultRuntime, "log").mockImplementation(() => {});
+    const logSpy = vi.spyOn(defaultRuntime, "log").mockImplementation(() => {});
+    vi.spyOn(defaultRuntime, "writeJson").mockImplementation((value: unknown, space = 2) => {
+      logSpy(JSON.stringify(value, null, space));
+    });
+    return logSpy;
+  }
+
+  function spyRuntimeJson() {
+    return vi.spyOn(defaultRuntime, "writeJson").mockImplementation(() => {});
   }
 
   function spyRuntimeErrors() {
     return vi.spyOn(defaultRuntime, "error").mockImplementation(() => {});
   }
 
-  function firstLoggedJson(log: ReturnType<typeof vi.spyOn>) {
-    return JSON.parse(String(log.mock.calls[0]?.[0] ?? "null")) as Record<string, unknown>;
+  function firstWrittenJson(writeJson: ReturnType<typeof vi.spyOn>) {
+    return (writeJson.mock.calls[0]?.[0] ?? null) as Record<string, unknown>;
   }
 
   const inactiveMemorySecretDiagnostic = "agents.defaults.memorySearch.remote.apiKey inactive"; // pragma: allowlist secret
@@ -440,10 +458,10 @@ describe("memory cli", () => {
       close,
     });
 
-    const log = spyRuntimeLogs();
+    const writeJson = spyRuntimeJson();
     await runMemoryCli(["status", "--json"]);
 
-    const payload = firstLoggedJson(log);
+    const payload = firstWrittenJson(writeJson);
     expect(Array.isArray(payload)).toBe(true);
     expect((payload[0] as Record<string, unknown>)?.agentId).toBe("main");
     expect(close).toHaveBeenCalled();
@@ -453,11 +471,11 @@ describe("memory cli", () => {
     const close = vi.fn(async () => {});
     setupMemoryStatusWithInactiveSecretDiagnostics(close);
 
-    const log = spyRuntimeLogs();
+    const writeJson = spyRuntimeJson();
     const error = spyRuntimeErrors();
     await runMemoryCli(["status", "--json"]);
 
-    const payload = firstLoggedJson(log);
+    const payload = firstWrittenJson(writeJson);
     expect(Array.isArray(payload)).toBe(true);
     expect(hasLoggedInactiveSecretDiagnostic(error)).toBe(true);
   });
@@ -557,10 +575,10 @@ describe("memory cli", () => {
     ]);
     mockManager({ search, close });
 
-    const log = spyRuntimeLogs();
+    const writeJson = spyRuntimeJson();
     await runMemoryCli(["search", "hello", "--json"]);
 
-    const payload = firstLoggedJson(log);
+    const payload = firstWrittenJson(writeJson);
     expect(Array.isArray(payload.results)).toBe(true);
     expect(payload.results as unknown[]).toHaveLength(1);
     expect(close).toHaveBeenCalled();
