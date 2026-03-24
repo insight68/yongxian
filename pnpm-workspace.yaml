@@ -2,6 +2,7 @@ packages:
   - .
   - ui
   - ui_cn
+  - ui_main
   - packages/*
   - extensions/*
 
@@ -11,12 +12,12 @@ onlyBuiltDependencies:
   - "@napi-rs/canvas"
   - "@tloncorp/api"
   - "@whiskeysockets/baileys"
-  - authenticate-pam
-  - esbuild
-  - node-llama-cpp
-  - protobufjs
-  - sharp
+  - "authenticate-pam"
+  - "esbuild"
+  - "node-llama-cpp"
+  - "protobufjs"
+  - "sharp"
 
 ignoredBuiltDependencies:
   - "@discordjs/opus"
-  - koffi
+  - "koffi"
