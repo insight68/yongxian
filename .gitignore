@@ -66,6 +66,10 @@ src/canvas-host/a2ui/*.bundle.js
 src/canvas-host/a2ui/*.map
 .bundle.hash
 
+# TypeScript compiled output in ui_cn/src (Vite handles .ts directly)
+ui_cn/src/**/*.js
+!ui_cn/src/**/*.config.js
+
 # fastlane (iOS)
 apps/ios/fastlane/README.md
 apps/ios/fastlane/report.xml
